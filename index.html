@@ -54,9 +54,6 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:19;padding:.75re
 .nav ul a{display:block;text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem;padding:.4rem .85rem;border-radius:999px}
 .nav ul a:hover{color:var(--ink);background:var(--chip)}
 .controls{display:flex;gap:.4rem;align-items:center}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px}
-.lang button{font:inherit;font-size:.82rem;font-weight:700;border:0;background:transparent;color:var(--muted);padding:.3rem .7rem;border-radius:999px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
 .theme-btn{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:50%;width:2.4rem;height:2.4rem;display:grid;place-items:center;cursor:pointer;padding:0}
 .theme-btn svg{width:17px;height:17px}
 @media (max-width:860px){.nav ul{display:none}}
@@ -116,69 +113,45 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.4vw,3.2rem)
 @keyframes blink{50%{opacity:0}}
 @media (max-width:920px){.about{grid-template-columns:1fr}.manifest pre{min-height:0}}
 
-/* timeline */
-.timeline{list-style:none;margin:0;padding:0 0 0 2rem;position:relative}
-.timeline::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--blue),var(--cyan) 40%,transparent)}
-.job{position:relative;margin-bottom:1.1rem}
-.job::before{content:"";position:absolute;left:calc(-2rem + 1px);top:2rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--muted)}
-.job.now::before{border-color:var(--cyan);background:var(--cyan);box-shadow:0 0 0 6px color-mix(in srgb,var(--cyan) 18%,transparent),0 0 20px var(--cyan)}
-.job-card{display:grid;grid-template-columns:11rem 1fr;gap:1.75rem;padding:1.6rem 1.75rem;transition:border-color .2s}
-.job-card:hover{border-color:var(--line-strong)}
-.when{font-size:.92rem;color:var(--muted);font-variant-numeric:tabular-nums}
-.when b{display:block;color:var(--ink);font-weight:600;font-size:1rem}
-.now-tag{display:inline-block;margin-top:.6rem;font-size:.78rem;font-weight:600;color:var(--cyan);border:1px solid color-mix(in srgb,var(--cyan) 40%,transparent);padding:.1rem .55rem;border-radius:999px}
-.job h3{margin:0;font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.02em;line-height:1.3}
-.org{color:var(--muted);margin:.3rem 0 .7rem}
-.org strong{color:var(--ink);font-weight:600}
-.job p.desc{margin:0 0 1rem;max-width:62ch}
-.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;list-style:none}
-.tags li{font-size:.83rem;padding:.25rem .7rem;border-radius:999px;background:color-mix(in srgb,var(--blue) 12%,transparent);color:var(--blue);font-weight:500;border:1px solid color-mix(in srgb,var(--blue) 22%,transparent)}
-@media (max-width:640px){.job-card{grid-template-columns:1fr;gap:.6rem;padding:1.3rem}.when b{display:inline;margin-right:.4rem}.now-tag{margin:0 0 0 .4rem}.timeline{padding-left:1.6rem}.job::before{left:calc(-1.6rem + 1px)}}
+/* focus areas */
+.focus{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.focus-card{padding:1.9rem 1.7rem;display:flex;flex-direction:column;gap:1rem;transition:border-color .25s,transform .25s}
+.focus-card:hover{border-color:color-mix(in srgb,var(--blue) 45%,transparent);transform:translateY(-3px)}
+.focus-card .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:var(--blue);background:color-mix(in srgb,var(--blue) 14%,transparent)}
+.focus-card:nth-child(2) .ic{color:var(--cyan);background:color-mix(in srgb,var(--cyan) 14%,transparent)}
+.focus-card:nth-child(3) .ic{color:var(--gold);background:color-mix(in srgb,var(--gold) 14%,transparent)}
+.focus-card .ic svg{width:24px;height:24px}
+.focus-card h3{margin:0;font-family:var(--display);font-weight:700;font-size:1.2rem;letter-spacing:-.02em}
+.focus-card p{margin:0;color:var(--muted)}
+.tech{list-style:none;margin:auto 0 0;padding:.4rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.tech li{font-size:.82rem;font-weight:500;padding:.25rem .65rem;border-radius:999px;border:1px solid var(--line);background:var(--chip)}
+@media (max-width:900px){.focus{grid-template-columns:1fr}}
 
-/* skills stack */
-.axis{color:var(--muted);font-size:.88rem;margin:0 0 .7rem}
-.axis.bottom{margin:.7rem 0 0}
-.stack{display:grid;grid-template-columns:1fr 16rem;gap:10px}
-.layers{display:flex;flex-direction:column;gap:10px}
-.layer{display:grid;grid-template-columns:12rem 1fr;align-items:center;gap:1.25rem;padding:1.05rem 1.3rem;border-radius:16px;border:1px solid var(--line);
-  background:linear-gradient(90deg,color-mix(in srgb,var(--blue) var(--tint),transparent),transparent 75%),var(--panel);position:relative;overflow:hidden}
-.layer::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);opacity:calc(var(--o))}
-.layer-name{font-family:var(--display);font-weight:700;font-size:.98rem;letter-spacing:-.01em;line-height:1.3}
-.layer-name small{display:block;font-family:var(--body);font-weight:400;color:var(--muted);font-size:.85rem;margin-top:.2rem;letter-spacing:0}
-.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
-.chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:.42rem .8rem;font-weight:600;font-size:.98rem;line-height:1.2}
-.chip img{width:24px;height:24px;object-fit:contain;background:#fff;border-radius:50%;padding:2px}
-.chip em{font-style:normal;font-weight:700;font-size:.72rem;color:var(--gold)}
-.side{border-radius:16px;padding:1.3rem;border:1px dashed color-mix(in srgb,var(--gold) 45%,transparent);
-  background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 10%,transparent),transparent),var(--panel);display:flex;flex-direction:column;gap:1rem}
-.side .chips{flex-direction:column;align-items:stretch}
-.side .chip{justify-content:space-between}
-@media (max-width:860px){.stack{grid-template-columns:1fr}.layer{grid-template-columns:1fr;gap:.75rem}.side .chips{flex-direction:row;flex-wrap:wrap}}
+/* journey */
+.journey{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.journey::before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue) 30%,var(--line))}
+.journey li{position:relative;padding:2rem 1.25rem 0 0}
+.journey li::before{content:"";position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--muted)}
+.journey li:first-child::before{border-color:var(--cyan);background:var(--cyan);box-shadow:0 0 0 6px color-mix(in srgb,var(--cyan) 18%,transparent),0 0 18px var(--cyan)}
+.journey .yr{font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--ink);letter-spacing:-.01em}
+.journey .org{display:block;font-weight:600;margin-top:.5rem;line-height:1.35}
+.journey .rl{display:block;color:var(--muted);font-size:.9rem;margin-top:.15rem}
+@media (max-width:860px){
+  .journey{grid-template-columns:1fr;gap:1.4rem;padding-left:1.8rem}
+  .journey::before{left:7px;right:auto;top:0;bottom:0;width:2px;height:auto;background:linear-gradient(var(--cyan),var(--blue) 30%,var(--line))}
+  .journey li{padding:0}
+  .journey li::before{left:-1.8rem;top:.2rem}
+}
 
-/* certs */
-.golden{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;padding:2rem 2.25rem;margin-bottom:2rem;border-radius:24px;
-  border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);
-  background:radial-gradient(500px 220px at 0% 50%,color-mix(in srgb,var(--gold) 18%,transparent),transparent 70%),var(--panel)}
-.golden img{width:130px;height:130px;object-fit:contain;display:block;padding:24px;background:#fff;border-radius:50%;box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 60%,transparent);filter:drop-shadow(0 0 22px color-mix(in srgb,var(--gold) 50%,transparent))}
-.golden h3{margin:0 0 .4rem;font-family:var(--display);font-size:1.45rem;color:var(--gold);letter-spacing:-.03em}
-.golden p{margin:0;max-width:66ch;color:var(--ink)}
-@media (max-width:600px){.golden{grid-template-columns:1fr;padding:1.5rem}}
-.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
-.filters button{font:inherit;font-size:.9rem;font-weight:500;border:1px solid var(--line);background:var(--chip);color:var(--muted);padding:.45rem 1rem;border-radius:999px;cursor:pointer}
-.filters button:hover{color:var(--ink);border-color:var(--line-strong)}
-.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.filters button span{opacity:.6;margin-left:.4rem;font-variant-numeric:tabular-nums}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:.9rem;list-style:none;margin:0;padding:0}
-.cert{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;padding:1.6rem 1.1rem 1.3rem;transition:transform .25s,border-color .25s,box-shadow .25s}
-.cert:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--blue) 50%,transparent);box-shadow:0 20px 40px -24px var(--glow)}
-.cert[hidden]{display:none}
-.cert.gold{border-color:color-mix(in srgb,var(--gold) 45%,transparent);background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 9%,transparent),transparent 60%),var(--panel)}
-.badge-img{width:124px;height:124px;object-fit:contain;display:block;padding:19px;background:#fff;border-radius:50%;box-shadow:0 0 0 1px var(--line),0 12px 30px -12px rgba(0,0,0,.5);transition:transform .25s,box-shadow .25s}
-.cert:hover .badge-img{transform:scale(1.05);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 45%,transparent),0 0 32px var(--glow)}
-.cert.gold .badge-img{padding:24px;box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 55%,transparent),0 0 30px color-mix(in srgb,var(--gold) 35%,transparent)}
-.cert h4{margin:0;font-size:.98rem;line-height:1.4;font-weight:600}
-.cert small{display:block;margin-top:.35rem;color:var(--muted);font-size:.83rem;line-height:1.5}
-@media (prefers-reduced-motion:reduce){.cert,.cert:hover,.cert:hover .badge-img,.btn:hover{transform:none}}
+/* badge wall */
+.badge-wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:1.6rem 1rem}
+.badge{display:flex;flex-direction:column;align-items:center;gap:.6rem;text-align:center}
+.badge img{width:96px;height:96px;object-fit:contain;padding:15px;background:#fff;border-radius:50%;box-shadow:0 0 0 1px var(--line),0 12px 28px -14px rgba(0,0,0,.6);transition:transform .25s,box-shadow .25s}
+.badge:hover img{transform:translateY(-4px) scale(1.06);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 45%,transparent),0 0 30px var(--glow)}
+.badge.gold img{padding:22px;box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 60%,transparent),0 0 26px color-mix(in srgb,var(--gold) 35%,transparent)}
+.badge span{font-size:.82rem;font-weight:600;color:var(--muted)}
+.badge.gold span{color:var(--gold)}
+@media (prefers-reduced-motion:reduce){.badge:hover img,.focus-card:hover,.btn:hover{transform:none}}
 
 /* contact */
 .contact{display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:center;padding:3rem;border-radius:28px;border:1px solid transparent;
@@ -213,17 +186,13 @@ footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:cente
       </a>
       <ul>
         <li><a href="#about" data-i18n="nav.about">About</a></li>
-        <li><a href="#experience" data-i18n="nav.exp">Experience</a></li>
-        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
-        <li><a href="#certifications" data-i18n="nav.certs">Certifications</a></li>
+        <li><a href="#work" data-i18n="nav.work">What I do</a></li>
+        <li><a href="#journey" data-i18n="nav.journey">Journey</a></li>
+        <li><a href="#certifications" data-i18n="nav.certs">Badges</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div class="controls">
-        <div class="lang" role="group" aria-label="Language">
-          <button type="button" data-lang="en" aria-pressed="true">EN</button>
-          <button type="button" data-lang="vi" aria-pressed="false">VI</button>
-        </div>
-        <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch color theme"></button>
+                <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch color theme"></button>
       </div>
     </nav>
   </div>
@@ -238,7 +207,7 @@ footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:cente
       <p class="lead" data-i18n="hero.lead"></p>
       <div class="actions">
         <a class="btn primary" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-i18n="hero.cta">Get in touch</span></a>
-        <a class="btn" href="#certifications"><span data-i18n="hero.certs">See all 19 certifications</span></a>
+        <a class="btn" href="#certifications"><span data-i18n="hero.certs">See my badges</span></a>
       </div>
     </div>
     <div class="orbit" id="orbit" role="img" aria-label="Golden Kubestronaut badge surrounded by 18 certification badges">
@@ -253,7 +222,7 @@ footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:cente
   <section id="about">
     <div class="wrap about">
       <div class="about-text">
-        <h2 data-i18n="about.title">About</h2>
+        <h2 data-i18n="about.title">Hi, I’m Phúc</h2>
         <p data-i18n="about.text"></p>
       </div>
       <figure class="manifest" aria-label="Profile summary written as a Kubernetes manifest">
@@ -263,43 +232,27 @@ footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.9rem;text-align:cente
     </div>
   </section>
 
-  <section id="experience">
+  <section id="work">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 data-i18n="exp.title">Experience</h2>
-        <p data-i18n="exp.sub"></p>
-      </div>
-      <ol class="timeline" id="timeline"></ol>
+      <div class="sec-head"><h2 data-i18n="work.title">What I do</h2></div>
+      <div class="focus" id="focus"></div>
     </div>
   </section>
 
-  <section id="skills">
+  <section id="journey">
     <div class="wrap">
-      <div class="sec-head">
-        <h2 data-i18n="skills.title">Skills</h2>
-        <p data-i18n="skills.sub"></p>
-      </div>
-      <p class="axis" data-i18n="skills.top"></p>
-      <div class="stack" id="stack"></div>
-      <p class="axis bottom" data-i18n="skills.bottom"></p>
+      <div class="sec-head"><h2 data-i18n="journey.title">The road so far</h2></div>
+      <ol class="journey" id="journeyList"></ol>
     </div>
   </section>
 
   <section id="certifications">
     <div class="wrap">
       <div class="sec-head">
-        <h2 data-i18n="certs.title">Certifications</h2>
-        <p id="certSummary"></p>
+        <h2 data-i18n="certs.title">Badges</h2>
+        <p data-i18n="certs.sub"></p>
       </div>
-      <div class="golden">
-        <img id="goldenImg" alt="Golden Kubestronaut badge">
-        <div>
-          <h3 data-i18n="certs.goldTitle"></h3>
-          <p data-i18n="certs.goldText"></p>
-        </div>
-      </div>
-      <div class="filters" role="group" aria-label="Filter certifications" id="filters"></div>
-      <ul class="cert-grid" id="certGrid"></ul>
+      <ul class="badge-wall" id="badgeWall"></ul>
     </div>
   </section>
 
@@ -340,126 +293,63 @@ const BADGES = {"LFCS": "data:image/webp;base64,UklGRoocAABXRUJQVlA4WAoAAAAQAAAA
 /* ================= translations ================= */
 const T = {
   en:{
-    'nav.about':'About','nav.exp':'Experience','nav.skills':'Skills','nav.certs':'Certifications','nav.contact':'Contact',
+    'nav.about':'About','nav.work':'What I do','nav.journey':'Journey','nav.certs':'Badges','nav.contact':'Contact',
     'hero.role':'Software Engineer at Viettel AI',
-    'hero.lead':'I build backend services with Java and Python, and the Kubernetes platforms they run on, with an eye on making them faster, safer and cheaper to operate.',
-    'hero.cta':'Get in touch','hero.certs':'See all 19 certifications',
-    'about.title':'About',
-    'about.text':'I started out shipping Flutter apps for clients in Japan, then moved into backend engineering at Viettel AI. Along the way, the question that kept pulling me in was what happens after the code is written: how a service gets deployed, scaled, secured and observed, and how to make it run faster on fewer resources. That curiosity took me through the full CNCF certification path, and today I care as much about the platform underneath and what it costs to run as about the API on top.',
-    'exp.title':'Experience','exp.sub':'Six roles across mobile, data, teaching and backend, now focused on cloud-native platforms.',
-    'skills.title':'Skills','skills.sub':'My stack, from the app people use down to the infrastructure it runs on. Gold labels name the certification behind a skill.',
-    'skills.top':'↑ Closer to users','skills.bottom':'↓ Closer to the hardware',
-    'certs.title':'Certifications',
-    'certs.summary':(e)=>`${e} exam certifications and 2 Kubestronaut titles from The Linux Foundation and AWS.`,
-    'certs.goldTitle':'Golden Kubestronaut, July 2026',
-    'certs.goldText':'Awarded by The Linux Foundation for holding every CNCF certification plus LFCS. It builds on the Kubestronaut title earned in October 2025 for passing all five Kubernetes exams: CKA, CKAD, CKS, KCNA and KCSA.',
-    'contact.title':'Let’s talk','contact.text':'Open to conversations about backend engineering, platform engineering and Kubernetes.',
+    'hero.lead':'Backend and platform engineer. I build services in Java and Python, and the Kubernetes platforms that keep them running.',
+    'hero.cta':'Get in touch','hero.certs':'See my badges',
+    'about.title':'Hi, I’m Phúc',
+    'about.text':'I’m a software engineer in Hanoi who got hooked on what happens after code ships. Today I build backend services at Viettel AI and keep digging into Kubernetes and the cloud, which is how I became a Golden Kubestronaut.',
+    'work.title':'What I do','journey.title':'The road so far',
+    'certs.title':'Badges','certs.sub':'19 certifications from The Linux Foundation and AWS.',
+    'contact.title':'Let’s talk','contact.text':'Happy to chat about backend, platform engineering or anything Kubernetes.',
     'contact.phone':'Phone','contact.copy':'Copy','contact.copied':'Copied','footer':'Based in Hanoi, Vietnam.',
-    present:'Present', now:'Current', issued:'Issued', expires:'Expires', theme:'Switch color theme',
-    months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-  },
-  vi:{
-    'nav.about':'Giới thiệu','nav.exp':'Kinh nghiệm','nav.skills':'Kỹ năng','nav.certs':'Chứng chỉ','nav.contact':'Liên hệ',
-    'hero.role':'Kỹ sư phần mềm tại Viettel AI',
-    'hero.lead':'Tôi xây dựng dịch vụ backend bằng Java và Python cùng nền tảng Kubernetes để vận hành chúng, luôn hướng tới hệ thống nhanh hơn, an toàn hơn và tiết kiệm chi phí hơn.',
-    'hero.cta':'Liên hệ với tôi','hero.certs':'Xem 19 chứng chỉ',
-    'about.title':'Giới thiệu',
-    'about.text':'Tôi bắt đầu bằng việc phát triển ứng dụng Flutter cho khách hàng Nhật Bản, rồi chuyển sang làm backend tại Viettel AI. Trên hành trình đó, điều luôn cuốn hút tôi là những gì diễn ra sau khi code được viết xong: dịch vụ được triển khai, mở rộng, bảo mật và giám sát ra sao, và làm thế nào để nó chạy nhanh hơn trên ít tài nguyên hơn. Sự tò mò ấy đưa tôi đi trọn lộ trình chứng chỉ CNCF, và hôm nay tôi quan tâm đến nền tảng bên dưới cùng chi phí vận hành của nó không kém gì bản thân API phía trên.',
-    'exp.title':'Kinh nghiệm','exp.sub':'Sáu vị trí qua di động, dữ liệu, giảng dạy và backend, giờ tập trung vào nền tảng cloud-native.',
-    'skills.title':'Kỹ năng','skills.sub':'Stack của tôi, từ ứng dụng người dùng chạm vào đến hạ tầng bên dưới. Nhãn vàng là chứng chỉ xác nhận cho kỹ năng đó.',
-    'skills.top':'↑ Gần người dùng','skills.bottom':'↓ Gần phần cứng',
-    'certs.title':'Chứng chỉ',
-    'certs.summary':(e)=>`${e} chứng chỉ thi và 2 danh hiệu Kubestronaut từ The Linux Foundation và AWS.`,
-    'certs.goldTitle':'Golden Kubestronaut, tháng 7/2026',
-    'certs.goldText':'Danh hiệu do The Linux Foundation trao cho người sở hữu toàn bộ chứng chỉ CNCF cùng LFCS. Trước đó, tôi đạt danh hiệu Kubestronaut vào tháng 10/2025 sau khi vượt qua cả năm kỳ thi Kubernetes: CKA, CKAD, CKS, KCNA và KCSA.',
-    'contact.title':'Kết nối nhé','contact.text':'Sẵn sàng trao đổi về backend, platform engineering và Kubernetes.',
-    'contact.phone':'Điện thoại','contact.copy':'Sao chép','contact.copied':'Đã chép','footer':'Sống và làm việc tại Hà Nội.',
-    present:'Hiện tại', now:'Đang làm', issued:'Cấp ngày', expires:'Hết hạn', theme:'Đổi giao diện sáng/tối',
-    months:null
+    now:'now', theme:'Switch color theme'
   }
 };
 let lang = 'en';
 const t = k => T[lang][k];
 const L = v => typeof v === 'string' ? v : v[lang];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const fmtMonth = ym => { const [y,m] = ym.split('-').map(Number); return lang==='en' ? `${T.en.months[m-1]} ${y}` : `Th${m}/${y}`; };
-const fmtDate = iso => { const [y,m,d] = iso.split('-').map(Number); return lang==='en' ? `${T.en.months[m-1]} ${d}, ${y}` : `${d}/${m}/${y}`; };
 
 /* ================= data ================= */
-const JOBS = [
-  {from:'2023-06', to:null, org:'Viettel AI',
-   role:{en:'Software Engineer',vi:'Kỹ sư phần mềm'},
-   meta:{en:'Full-time, on-site in Vietnam',vi:'Toàn thời gian, làm việc tại văn phòng'},
-   desc:{en:'Building backend services for AI products and running them on cloud-native infrastructure.',vi:'Phát triển dịch vụ backend cho các sản phẩm AI và vận hành chúng trên hạ tầng cloud-native.'},
-   tags:['Spring Framework','FastAPI','Kubernetes','Kafka','Redis','SQL']},
-  {from:'2022-02', to:'2023-03', org:'Stockproxx & Beautyfull',
-   role:{en:'Mobile Application Developer',vi:'Lập trình viên ứng dụng di động'},
-   meta:{en:'Full-time, Hanoi',vi:'Toàn thời gian, Hà Nội'},
-   desc:{en:'Built and shipped mobile applications for the company’s products.',vi:'Xây dựng và phát hành ứng dụng di động cho các sản phẩm của công ty.'},
-   tags:['Flutter','Mobile Applications']},
-  {from:'2020-12', to:'2023-02', org:'Commude Philippines, Inc.',
-   role:{en:'Mobile Developer',vi:'Lập trình viên di động'},
-   meta:{en:'Full-time',vi:'Toàn thời gian'},
-   desc:{en:'Developed mobile software for Japanese customers using Flutter.',vi:'Phát triển phần mềm di động cho khách hàng Nhật Bản bằng Flutter.'},
-   tags:['Flutter','Mobile Applications']},
-  {from:'2021-02', to:'2021-08', org:{en:'Hanoi University of Science and Technology',vi:'Đại học Bách khoa Hà Nội'},
-   role:{en:'Teaching Assistant',vi:'Trợ giảng'},
-   meta:{en:'Part-time',vi:'Bán thời gian'},
-   desc:{en:'Assisted courses in advanced Java and object-oriented programming.',vi:'Trợ giảng các học phần Java nâng cao và lập trình hướng đối tượng.'},
-   tags:['Java','OOP']},
-  {from:'2020-09', to:'2021-01', org:'VCCorp Corporation',
-   role:{en:'Data Engineer Intern',vi:'Thực tập sinh Data Engineer'},
-   meta:{en:'Part-time',vi:'Bán thời gian'},
-   desc:{en:'Worked on Java core and data engineering tasks.',vi:'Làm việc với Java core và các bài toán kỹ thuật dữ liệu.'},
-   tags:['Java','Data Engineering']},
-  {from:'2019-10', to:null, org:'EGG Club',
-   role:{en:'Club Member',vi:'Thành viên câu lạc bộ'},
-   meta:{en:'Hanoi',vi:'Hà Nội'},
-   desc:{en:'Long-standing member working on web development projects with the club.',vi:'Thành viên lâu năm, tham gia các dự án phát triển web cùng câu lạc bộ.'},
-   tags:['Web Development']}
+const ICONS = {
+  server:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>',
+  helm:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V8M12 16v4.5M3.5 12H8M16 12h4.5M6 6l3.2 3.2M14.8 14.8 18 18M18 6l-3.2 3.2M9.2 14.8 6 18"/></svg>',
+  gauge:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/></svg>'
+};
+const FOCUS = [
+  {ic:'server', t:{en:'Backend services',vi:'Dịch vụ backend'}, d:{en:'APIs in Java and Python that stay fast as traffic grows.',vi:'API bằng Java và Python, vẫn nhanh khi lưu lượng tăng.'}, tech:['Spring','FastAPI','Kafka','Redis','SQL']},
+  {ic:'helm', t:{en:'Kubernetes platforms',vi:'Nền tảng Kubernetes'}, d:{en:'Clusters that are secure by default and ship through GitOps.',vi:'Cluster bảo mật ngay từ đầu, triển khai bằng GitOps.'}, tech:['Kubernetes','Istio','Cilium','Argo CD','Backstage']},
+  {ic:'gauge', t:{en:'Lean, observable cloud',vi:'Cloud tối ưu, dễ quan sát'}, d:{en:'Measure first, then cut latency and cost.',vi:'Đo lường trước, rồi cắt giảm độ trễ và chi phí.'}, tech:['AWS','Prometheus','OpenTelemetry','Kyverno']}
 ];
-
-const LAYERS = [
-  {name:{en:'Apps',vi:'Ứng dụng'}, note:{en:'Mobile and web',vi:'Di động và web'}, tint:'4%', o:.3, items:[['Flutter'],['Web Development']]},
-  {name:{en:'Services',vi:'Dịch vụ'}, note:{en:'Backend APIs',vi:'API backend'}, tint:'7%', o:.4, items:[['Java'],['Spring Framework'],['Python'],['FastAPI']]},
-  {name:{en:'Data',vi:'Dữ liệu'}, note:{en:'Storage, cache, streaming',vi:'Lưu trữ, cache, streaming'}, tint:'10%', o:.5, items:[['SQL'],['Redis'],['Kafka']]},
-  {name:{en:'Delivery',vi:'Triển khai'}, note:{en:'GitOps and developer portal',vi:'GitOps và developer portal'}, tint:'13%', o:.62, items:[['Argo CD','CAPA'],['GitOps','CGOA'],['Backstage','CBA']]},
-  {name:{en:'Network & mesh',vi:'Mạng & mesh'}, note:{en:'Traffic between services',vi:'Luồng giữa các dịch vụ'}, tint:'16%', o:.74, items:[['Istio','ICA'],['Cilium','CCA']]},
-  {name:{en:'Orchestration',vi:'Điều phối'}, note:{en:'Running containers',vi:'Vận hành container'}, tint:'20%', o:.87, items:[['Kubernetes','CKA · CKAD · CKS · KCNA']]},
-  {name:{en:'Infrastructure',vi:'Hạ tầng'}, note:{en:'Cloud and OS',vi:'Cloud và hệ điều hành'}, tint:'25%', o:1, items:[['AWS','SAA'],['Linux','LFCS']]}
+const JOURNEY = [
+  {y:['2023',null], o:'Viettel AI', r:{en:'Software Engineer',vi:'Kỹ sư phần mềm'}},
+  {y:['2022','2023'], o:'Stockproxx & Beautyfull', r:{en:'Mobile Developer',vi:'Lập trình viên di động'}},
+  {y:['2020','2023'], o:'Commude Philippines', r:{en:'Flutter Developer',vi:'Lập trình viên Flutter'}},
+  {y:['2021'], o:{en:'Hanoi Univ. of Science & Tech.',vi:'ĐH Bách khoa Hà Nội'}, r:{en:'Teaching Assistant, Java',vi:'Trợ giảng Java'}},
+  {y:['2020','2021'], o:'VCCorp', r:{en:'Data Engineer Intern',vi:'Thực tập Data Engineer'}}
 ];
-const SIDE = {name:{en:'Observability & policy',vi:'Giám sát & chính sách'}, note:{en:'Across every layer',vi:'Xuyên suốt mọi tầng'},
-  items:[['Prometheus','PCA'],['OpenTelemetry','OTCA'],['Kyverno','KCA'],['Security','CKS · KCSA']]};
-/* small badge icon next to a skill chip */
-const CHIP_BADGE = {'Argo CD':'CAPA','GitOps':'CGOA','Backstage':'CBA','Istio':'ICA','Cilium':'CCA','Kubernetes':'CKA','AWS':'AWS','Linux':'LFCS','Prometheus':'PCA','OpenTelemetry':'OTCA','Kyverno':'KCA','Security':'CKS'};
-
 const CERTS = [
-  {a:'GOLD', n:'Golden Kubestronaut', d:'2026-07-13', k:'issued', c:'kubernetes', gold:1},
-  {a:'AWS', n:'AWS Certified Solutions Architect – Associate', i:'Amazon Web Services', d:'2029-10-22', k:'expires', c:'cloud'},
-  {a:'CNPE', n:'Certified Cloud Native Platform Engineer', d:'2028-07-10', k:'expires', c:'platform'},
-  {a:'ICA', n:'Istio Certified Associate', d:'2028-07-07', k:'expires', c:'network'},
-  {a:'LFCS', n:'Linux Foundation Certified Systems Administrator', d:'2028-05-30', k:'expires', c:'platform'},
-  {a:'CBA', n:'Certified Backstage Associate', d:'2028-05-03', k:'expires', c:'platform'},
-  {a:'CNPA', n:'Certified Cloud Native Platform Engineering Associate', d:'2028-04-27', k:'expires', c:'platform'},
-  {a:'KCA', n:'Kyverno Certified Associate', d:'2028-04-22', k:'expires', c:'security'},
-  {a:'CCA', n:'Cilium Certified Associate', d:'2028-04-08', k:'expires', c:'network'},
-  {a:'OTCA', n:'OpenTelemetry Certified Associate', d:'2028-03-19', k:'expires', c:'observability'},
-  {a:'PCA', n:'Prometheus Certified Associate', d:'2028-01-17', k:'expires', c:'observability'},
-  {a:'CAPA', n:'Certified Argo Project Associate', d:'2027-11-04', k:'expires', c:'delivery'},
-  {a:'CGOA', n:'Certified GitOps Associate', d:'2027-10-27', k:'expires', c:'delivery'},
-  {a:'KCSA', n:'Kubernetes and Cloud Native Security Associate', d:'2027-10-14', k:'expires', c:'security'},
-  {a:'KUBE', n:'Kubestronaut', d:'2025-10-13', k:'issued', c:'kubernetes', gold:1},
-  {a:'KCNA', n:'Kubernetes and Cloud Native Associate', d:'2027-10-09', k:'expires', c:'kubernetes'},
-  {a:'CKS', n:'Certified Kubernetes Security Specialist', d:'2027-10-07', k:'expires', c:'security'},
-  {a:'CKA', n:'Certified Kubernetes Administrator', d:'2027-09-07', k:'expires', c:'kubernetes'},
-  {a:'CKAD', n:'Certified Kubernetes Application Developer', d:'2027-08-08', k:'expires', c:'kubernetes'}
+  {a:'GOLD', n:'Golden Kubestronaut', s:'Golden', gold:1},
+  {a:'KUBE', n:'Kubestronaut', s:'Kubestronaut', gold:1},
+  {a:'CKA', n:'Certified Kubernetes Administrator'},
+  {a:'CKAD', n:'Certified Kubernetes Application Developer'},
+  {a:'CKS', n:'Certified Kubernetes Security Specialist'},
+  {a:'KCNA', n:'Kubernetes and Cloud Native Associate'},
+  {a:'KCSA', n:'Kubernetes and Cloud Native Security Associate'},
+  {a:'AWS', n:'AWS Certified Solutions Architect – Associate', s:'AWS SAA'},
+  {a:'CNPE', n:'Certified Cloud Native Platform Engineer'},
+  {a:'CNPA', n:'Certified Cloud Native Platform Engineering Associate'},
+  {a:'LFCS', n:'Linux Foundation Certified Systems Administrator'},
+  {a:'ICA', n:'Istio Certified Associate'},
+  {a:'CCA', n:'Cilium Certified Associate'},
+  {a:'CAPA', n:'Certified Argo Project Associate'},
+  {a:'CGOA', n:'Certified GitOps Associate'},
+  {a:'CBA', n:'Certified Backstage Associate'},
+  {a:'KCA', n:'Kyverno Certified Associate'},
+  {a:'PCA', n:'Prometheus Certified Associate'},
+  {a:'OTCA', n:'OpenTelemetry Certified Associate'}
 ];
-const GROUPS = [
-  ['all',{en:'All',vi:'Tất cả'}],['kubernetes',{en:'Kubernetes',vi:'Kubernetes'}],['security',{en:'Security',vi:'Bảo mật'}],
-  ['network',{en:'Networking & mesh',vi:'Mạng & service mesh'}],['observability',{en:'Observability',vi:'Giám sát'}],
-  ['delivery',{en:'Delivery & GitOps',vi:'Triển khai & GitOps'}],['platform',{en:'Platform',vi:'Nền tảng'}],['cloud',{en:'Cloud',vi:'Cloud'}]
-];
-let activeFilter = 'all';
 
 /* ================= orbit ================= */
 (function(){
@@ -474,73 +364,32 @@ let activeFilter = 'all';
       return `<div class="orb" style="left:${x}%;top:${y}%"><img src="${BADGES[a]}" alt="" title="${esc(names[a])}"></div>`;
     }).join('');
   });
-  ['coreImg','pillImg','goldenImg'].forEach(id => document.getElementById(id).src = BADGES.GOLD);
+  ['coreImg','pillImg'].forEach(id => document.getElementById(id).src = BADGES.GOLD);
 })();
 
 /* ================= renderers ================= */
-function renderJobs(){
-  document.getElementById('timeline').innerHTML = JOBS.map(j => `
-    <li class="job${j.to ? '' : ' now'}">
-      <div class="job-card panel">
-        <div class="when"><b>${fmtMonth(j.from)}</b>${j.to ? fmtMonth(j.to) : t('present')}${j.to ? '' : `<br><span class="now-tag">${t('now')}</span>`}</div>
-        <div>
-          <h3>${esc(L(j.role))}</h3>
-          <div class="org"><strong>${esc(L(j.org))}</strong>, ${esc(L(j.meta))}</div>
-          <p class="desc">${esc(L(j.desc))}</p>
-          <ul class="tags">${j.tags.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
-        </div>
-      </div>
-    </li>`).join('');
+function render(){
+  document.getElementById('focus').innerHTML = FOCUS.map(f => `
+    <article class="focus-card panel">
+      <span class="ic">${ICONS[f.ic]}</span>
+      <h3>${esc(L(f.t))}</h3>
+      <p>${esc(L(f.d))}</p>
+      <ul class="tech">${f.tech.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    </article>`).join('');
+  document.getElementById('journeyList').innerHTML = JOURNEY.map(j => `
+    <li><span class="yr">${j.y[0]}${j.y.length > 1 ? '–' + (j.y[1] || t('now')) : ''}</span>
+      <span class="org">${esc(L(j.o))}</span><span class="rl">${esc(L(j.r))}</span></li>`).join('');
+  document.getElementById('badgeWall').innerHTML = CERTS.map(c => `
+    <li class="badge${c.gold ? ' gold' : ''}" title="${esc(c.n)}">
+      <img src="${BADGES[c.a]}" alt="${esc(c.n)}" loading="lazy"><span>${esc(c.s || c.a)}</span></li>`).join('');
 }
-function renderSkills(){
-  const chips = items => `<ul class="chips">${items.map(([n,c]) => {
-    const b = CHIP_BADGE[n];
-    return `<li class="chip"><span style="display:inline-flex;align-items:center;gap:.5rem">${b ? `<img src="${BADGES[b]}" alt="">` : ''}${esc(n)}</span>${c ? `<em>${esc(c)}</em>` : ''}</li>`;
-  }).join('')}</ul>`;
-  document.getElementById('stack').innerHTML = `
-    <div class="layers">${LAYERS.map(l => `
-      <div class="layer" style="--tint:${l.tint};--o:${l.o}">
-        <div class="layer-name">${esc(L(l.name))}<small>${esc(L(l.note))}</small></div>
-        ${chips(l.items)}
-      </div>`).join('')}
-    </div>
-    <div class="side">
-      <div class="layer-name">${esc(L(SIDE.name))}<small>${esc(L(SIDE.note))}</small></div>
-      ${chips(SIDE.items)}
-    </div>`;
-}
-function renderCerts(){
-  document.getElementById('certSummary').textContent = t('certs.summary')(CERTS.filter(c => !c.gold).length);
-  document.getElementById('certGrid').innerHTML = CERTS.map(c => `
-    <li class="cert panel${c.gold ? ' gold' : ''}" data-cat="${c.c}">
-      <img class="badge-img" src="${BADGES[c.a]}" alt="${esc(c.n)} badge" loading="lazy">
-      <div><h4>${esc(c.n)}</h4><small>${esc(c.i || 'The Linux Foundation')}<br>${t(c.k)} ${fmtDate(c.d)}</small></div>
-    </li>`).join('');
-  const count = k => k === 'all' ? CERTS.length : CERTS.filter(c => c.c === k).length;
-  document.getElementById('filters').innerHTML = GROUPS.map(([k,l]) =>
-    `<button type="button" data-key="${k}" aria-pressed="${k===activeFilter}">${esc(L(l))}<span>${count(k)}</span></button>`).join('');
-  applyFilter();
-}
-function applyFilter(){
-  document.querySelectorAll('#certGrid .cert').forEach(li => { li.hidden = !(activeFilter === 'all' || li.dataset.cat === activeFilter); });
-}
-document.getElementById('filters').addEventListener('click', e => {
-  const b = e.target.closest('button'); if (!b) return;
-  activeFilter = b.dataset.key;
-  document.querySelectorAll('#filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
-  applyFilter();
-});
-
 function setLang(next){
   lang = next;
   document.documentElement.lang = next;
   document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[lang][el.dataset.i18n]; if (typeof v === 'string') el.textContent = v; });
-  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
-  document.getElementById('themeBtn').setAttribute('aria-label', t('theme'));
-  renderJobs(); renderSkills(); renderCerts();
-  try { localStorage.setItem('lang', lang); } catch(e){}
+    document.getElementById('themeBtn').setAttribute('aria-label', t('theme'));
+  render();
 }
-document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
 /* copy email */
 document.getElementById('copyBtn').addEventListener('click', async e => {
@@ -592,8 +441,7 @@ document.getElementById('copyBtn').addEventListener('click', async e => {
 
 /* ================= init ================= */
 document.getElementById('year').textContent = new Date().getFullYear();
-let savedLang = null; try { savedLang = localStorage.getItem('lang'); } catch(e){}
-setLang(savedLang || ((navigator.language||'').toLowerCase().startsWith('vi') ? 'vi' : 'en'));
+setLang('en');
 
 /* ================= manifest (types once when visible) ================= */
 (function(){
